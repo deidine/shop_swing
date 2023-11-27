@@ -1,0 +1,34 @@
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `BenfitToDay` (IN `date` DATE, OUT `totalBenifit` DECIMAL(10,2))   BEGIN SELECT SUM((p.sellprice - p.costprice) * dp.quantity) INTO totalBenifit FROM Sale_detail dp JOIN products p ON dp.productcode = p.productcode JOIN salesinfo j ON dp.salesid = j.salesid WHERE DATE(j.date) = date;  
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Product_less_then` (IN `input_quantity` INT)   BEGIN
+    SELECT *
+    FROM products
+    WHERE quantity < input_quantity;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SaleAmount` (IN `dateSalle` DATE, OUT `SaleAmount` INT)   BEGIN SELECT COUNT(*) INTO SaleAmount FROM salesinfo WHERE DATE(date) = dateSalle;  
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TopProduct` (IN `input_count` INT)   BEGIN
+
+SELECT p.*
+    FROM products p
+    INNER JOIN (
+        SELECT productcode
+        FROM salledata
+        GROUP BY productcode
+        ORDER BY SUM(quantity) DESC
+        LIMIT input_count
+    ) AS top ON p.productcode = top.productcode ;
+    END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TotalPayee` (IN `date` DATE, OUT `totalPaye` DECIMAL(10,2))   BEGIN SELECT SUM(total_paye) INTO totalPaye FROM salesinfo WHERE DATE(date) = date;  
+END$$
+
+DELIMITER ;
