@@ -14,7 +14,8 @@ package com.inventory.DTO;
 
 public class ProductDTO {
 
-    private int prodID, salleID, quantity, userID;
+    private int prodID, salleID, userID;
+    double quantity;
     private double costPrice, sellPrice;
     private Double totalCost, totalPayee, totalRcue,totalChange;
     private String prodCode, prodName, date, suppCode, custCode, custName, brand;
@@ -41,11 +42,11 @@ void setMesureRakor(int mesure_rakor){
         this.prodID = prodID;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 

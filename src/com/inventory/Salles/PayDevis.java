@@ -703,7 +703,7 @@ public class PayDevis extends javax.swing.JDialog {
                 productDTO2.setProdCode(listSalles.getValueAt(i, 1).toString());
                 productDTO2.setSellPrice(Double.parseDouble(listSalles.getValueAt(i, 2).toString()));
 
-                productDTO2.setQuantity(Integer.parseInt(listSalles.getValueAt(i, 3).toString()));
+                productDTO2.setQuantity(Double.parseDouble(listSalles.getValueAt(i, 3).toString()));
                 new ProductDAO().sellDetailProductDAO(productDTO2, id);
             }
 //new ProductDAO().report(id);

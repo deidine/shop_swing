@@ -132,7 +132,7 @@ public class Utils {
             Double sellPrice = Double.valueOf(listSalles.getValueAt(i, 2).toString());
 //            Double totalRevenue = sellPrice;
 
-            Double totalRevenue = sellPrice * Integer.valueOf(listSalles.getValueAt(i, 3).toString());
+            Double totalRevenue = sellPrice * Double.valueOf(listSalles.getValueAt(i, 3).toString());
             totalPaye = totalPaye + totalRevenue;
 
         }

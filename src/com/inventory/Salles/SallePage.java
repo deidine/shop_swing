@@ -45,7 +45,7 @@ public final class SallePage extends javax.swing.JFrame {
     String username;
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     boolean valideQuentite = false;
-    int currentStock = 0;
+    double currentStock = 0;
     Double moneyToCaisse = 0.0;
     Date dates = new Date();
 //    private boolean canLoan;
@@ -1287,7 +1287,7 @@ public final class SallePage extends javax.swing.JFrame {
                 || priceText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "il vaux remplis toute les champs.");
         } else {
-            if (Integer.parseInt(quantityText.getText()) <= 0) {
+            if (Double.parseDouble(quantityText.getText()) <= 0) {
 
                 JOptionPane.showMessageDialog(null, "il vaut entrer valide qantite ");
 
@@ -1497,7 +1497,7 @@ public final class SallePage extends javax.swing.JFrame {
                         || priceText.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "il vaux remplis toute les champs.");
                 } else {
-                    if (Integer.parseInt(quantityText.getText()) <= 0) {
+                    if (Double.parseDouble(quantityText.getText()) <= 0) {
 
                         JOptionPane.showMessageDialog(null, "il vaut entrer valide qantite ");
 
@@ -1738,8 +1738,8 @@ public final class SallePage extends javax.swing.JFrame {
 
     void duplicateProduct() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
-        int quant1 = 0;
-        int quant2 = Integer.parseInt(quantityText.getText());
+        double quant1 = 0;
+        double quant2 = Double.parseDouble(quantityText.getText());
         String codeProd1 = null;
         String codeProd2 = prodCodeText.getText();
         if (listSalles.getRowCount() > 0) {
@@ -1748,7 +1748,7 @@ public final class SallePage extends javax.swing.JFrame {
                 codeProd1 = listSalles.getValueAt(i, 1).toString();
 
                 if (codeProd1.equals(codeProd2)) {
-                    quant1 = Integer.parseInt(listSalles.getValueAt(i, 3).toString());
+                    quant1 = Double.parseDouble(listSalles.getValueAt(i, 3).toString());
                     quant1 = quant1 + quant2;
                     listSalles.setValueAt(quant1, i, 3);
                     listSalles.setValueAt(priceText.getText(), i, 2);
@@ -1769,9 +1769,7 @@ public final class SallePage extends javax.swing.JFrame {
 
     public void clearEmpty() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
-        int quant1 = 0;
-        int quant2 = Integer.parseInt(quantityText.getText());
-        String codeProd1;
+         String codeProd1;
         String codeProd2 = null;
         if (listSalles.getRowCount() > 0) {
 
@@ -1793,14 +1791,14 @@ public final class SallePage extends javax.swing.JFrame {
 
         DefaultTableModel listSalles = (DefaultTableModel) jTableProduct.getModel();
         String codeProd1;
-        int quent1;
-        int quent2 = Integer.parseInt(quantityText.getText());
+        double quent1;
+        double quent2 = Double.parseDouble(quantityText.getText());
         String codeProd2 = prodCodeText.getText();
 
         if (listSalles.getRowCount() > 0) {
             for (int i = 0; i < listSalles.getRowCount(); i++) {
                 codeProd1 = listSalles.getValueAt(i, 0).toString();
-                quent1 = Integer.parseInt(listSalles.getValueAt(i, 3).toString());
+                quent1 = Double.parseDouble(listSalles.getValueAt(i, 3).toString());
 
                 if (codeProd2.equals(codeProd1)) {
                     listSalles.setValueAt(quent1 - quent2, i, 3);
@@ -1815,20 +1813,20 @@ public final class SallePage extends javax.swing.JFrame {
 
         DefaultTableModel listSalles = (DefaultTableModel) jTableProduct.getModel();
 
-        int quent1;
+        double quent1;
         String quent = quantityText.getText();
 
-        int quent2 = Integer.parseInt(quent);
+        double quent2 = Double.parseDouble(quent);
 
         String codeProd2 = prodCodeText.getText();
-        if (Integer.parseInt(quantityText.getText()) <= 0) {
+        if (Double.parseDouble(quantityText.getText()) <= 0) {
             quantityText.setText("");
             JOptionPane.showMessageDialog(null, "il vaut entrer valide qantite ");
 
         } else if (!prodCodeText.getText().equals("") && jTableProduct.getSelectedRow() >= 0) {
 
             String codeProd1 = listSalles.getValueAt(jTableProduct.getSelectedRow(), 0).toString();
-            quent1 = Integer.parseInt(listSalles.getValueAt(jTableProduct.getSelectedRow(), 3).toString());
+            quent1 = Double.parseDouble(listSalles.getValueAt(jTableProduct.getSelectedRow(), 3).toString());
             currentStock = quent1;
 
             if (codeProd1.equals(codeProd2)) {
@@ -1854,15 +1852,15 @@ public final class SallePage extends javax.swing.JFrame {
         DefaultTableModel listSalles2 = (DefaultTableModel) salesTable.getModel();
 
         String codeProd1;
-        int quent1;
+        double quent1;
 
-        int quent2 = Integer.parseInt(listSalles2.getValueAt(salesTable.getSelectedRow(), 3).toString());
+        double quent2 = Double.parseDouble(listSalles2.getValueAt(salesTable.getSelectedRow(), 3).toString());
 
         String codeProd2 = listSalles2.getValueAt(salesTable.getSelectedRow(), 1).toString();
 
         for (int i = 0; i < listSalles.getRowCount(); i++) {
             codeProd1 = listSalles.getValueAt(i, 0).toString();
-            quent1 = Integer.parseInt(listSalles.getValueAt(i, 3).toString());
+            quent1 = Double.parseDouble(listSalles.getValueAt(i, 3).toString());
 
             if (codeProd2.equals(codeProd1)) {
 
@@ -2020,7 +2018,7 @@ public final class SallePage extends javax.swing.JFrame {
                 productDTO2.setCustCode(listSalles.getValueAt(i, 0).toString());
                 productDTO2.setProdCode(listSalles.getValueAt(i, 1).toString());
 
-                productDTO2.setQuantity(Integer.parseInt(listSalles.getValueAt(i, 3).toString()));
+                productDTO2.setQuantity(Double.parseDouble(listSalles.getValueAt(i, 3).toString()));
                 productDTO2.setSellPrice(Double.parseDouble(listSalles.getValueAt(i, 2).toString()));
                 new ProductDAO().sellDetailProductDAO(productDTO2, id);
             }
@@ -2062,7 +2060,7 @@ public final class SallePage extends javax.swing.JFrame {
                 productDTO2.setProdCode(listSalles.getValueAt(i, 1).toString());
                 productDTO2.setSellPrice(Double.parseDouble(listSalles.getValueAt(i, 2).toString()));
 
-                productDTO2.setQuantity(Integer.parseInt(listSalles.getValueAt(i, 3).toString()));
+                productDTO2.setQuantity(Double.parseDouble(listSalles.getValueAt(i, 3).toString()));
                 new ProductDAO().sellDevisDetailProductDAO(productDTO2, id);
             }
             new ProductDAO().report(id);

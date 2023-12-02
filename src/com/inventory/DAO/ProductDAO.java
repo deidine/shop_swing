@@ -229,7 +229,7 @@ public class ProductDAO {
             prepStatement.setDouble(3, productDTO.getCostPrice());
             prepStatement.setDouble(4, productDTO.getSellPrice());
             prepStatement.setString(5, productDTO.getBrand());
-            prepStatement.setInt(6, productDTO.getQuantity());
+            prepStatement.setDouble(6, productDTO.getQuantity());
 
             prepStatement.executeUpdate();
             JOptionPane.showMessageDialog(null, "le produit est enregister avec succes.");
@@ -246,7 +246,7 @@ public class ProductDAO {
             prepStatement.setString(1, productDTO.getSuppCode());
             prepStatement.setString(2, productDTO.getProdCode());
             prepStatement.setString(3, productDTO.getDate());
-            prepStatement.setInt(4, productDTO.getQuantity());
+            prepStatement.setDouble(4, productDTO.getQuantity());
             prepStatement.setDouble(5, productDTO.getTotalCost());
 
             prepStatement.executeUpdate();
@@ -260,7 +260,7 @@ public class ProductDAO {
         try {
             String query = "UPDATE products SET quantity=quantity+? WHERE productcode=?";
             prepStatement = conn.prepareStatement(query);
-            prepStatement.setInt(1, productDTO.getQuantity());
+            prepStatement.setDouble(1, productDTO.getQuantity());
             prepStatement.setString(2, prodCode);
 
             prepStatement.executeUpdate();
@@ -280,7 +280,7 @@ public class ProductDAO {
             prepStatement.setDouble(3, productDTO.getSellPrice());
             prepStatement.setString(4, productDTO.getBrand());
 
-            prepStatement.setInt(5, productDTO.getQuantity());
+            prepStatement.setDouble(5, productDTO.getQuantity());
 
             prepStatement.setString(6, productDTO.getProdCode());
 
