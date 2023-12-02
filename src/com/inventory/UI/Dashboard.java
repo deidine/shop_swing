@@ -304,7 +304,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(sallePAge))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollTabelTransaksi13, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout panelFournisseurLayout = new javax.swing.GroupLayout(panelFournisseur);
@@ -317,7 +317,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         panelFournisseurLayout.setVerticalGroup(
             panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
             .addGroup(panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelFournisseurLayout.createSequentialGroup()
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1626,7 +1626,21 @@ dispose();
     }//GEN-LAST:event_serchUserKeyReleased
 
     private void editUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUser2ActionPerformed
-        // TODO add your handling code here:
+   if (tabelUser.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "il vaut selectionner un line dans le tableau .");
+        } else {
+            int row = tabelUser.getSelectedRow();
+            int col = tabelUser.getColumnCount();
+            Object[] data = new Object[col];
+
+            for (int i = 0; i < col; i++) {
+
+                data[i] = tabelUser.getValueAt(row, i);
+            }
+
+            new Userform(true, false, data);
+            refrech();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_editUser2ActionPerformed
 
     private void editUser2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editUser2KeyPressed
@@ -1672,7 +1686,7 @@ dispose();
     public void loadSearchDataUser(String text) {
         try {
             UserDAO usererDAO = new UserDAO();
-            tabelUser.setModel(usererDAO.buildTableModel(usererDAO.getUserSearch(text)));
+            tabelUser.setModel(usererDAO.buildTableModel(usererDAO.getUserSearch2(text)));
         } catch (SQLException e) {
             e.printStackTrace();
         }

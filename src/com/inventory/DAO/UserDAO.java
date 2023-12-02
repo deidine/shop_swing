@@ -36,6 +36,17 @@ public class UserDAO {
         }
     }
 // Search method for products
+    public ResultSet getUserSearch2(String text) {
+        try {
+            String query = "SELECT `id`, `name`, `location`, `phone`, `username`, `usertype`, `canLoan`  FROM users "
+                    + "WHERE username LIKE '%" + text + "%' OR phone LIKE '%" + text + "%' OR name LIKE '%"
+                    + text + "%'";
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
 
     public ResultSet getUserSearch(String text) {
         try {
@@ -174,7 +185,7 @@ public class UserDAO {
     // Method to retrieve data set to display in table
     public ResultSet getQueryResult() {
         try {
-            String query = "SELECT * FROM users";
+            String query = "SELECT `id`, `name`, `location`, `phone`, `username`, `usertype`, `canLoan`  FROM users";
             resultSet = statement.executeQuery(query);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

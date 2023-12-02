@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author deidine
  */
-
 public class SalleInfo extends javax.swing.JDialog {
 
     String username;
@@ -26,7 +25,7 @@ public class SalleInfo extends javax.swing.JDialog {
     Connection conn = null;
     Statement statement = null;
     ResultSet resultSet = null;
-    private  Object[] data;
+    private Object[] data;
 
     /**
      * Creates new form SalleInfo
@@ -40,7 +39,7 @@ public class SalleInfo extends javax.swing.JDialog {
         }
         this.username = username;
         this.data = data;
-    
+
         initComponents();
 
         loadDataSet();
@@ -55,6 +54,7 @@ public class SalleInfo extends javax.swing.JDialog {
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,7 +247,6 @@ public class SalleInfo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotal1ActionPerformed
 
- 
     public void loadDataSet() {
         codeText.setText(data[2].toString());
     }
@@ -268,7 +267,7 @@ public class SalleInfo extends javax.swing.JDialog {
         }
     }
 
-  private void totalValue() {
+    private void totalValue() {
         DefaultTableModel listSalles = (DefaultTableModel) payTable.getModel();
 
         Double totalPaye = 0.0;
@@ -278,7 +277,7 @@ public class SalleInfo extends javax.swing.JDialog {
 
             Double totalRevenue = sellPrice * Double.valueOf(listSalles.getValueAt(i, 3).toString());
             totalPaye = totalPaye + totalRevenue;
- txtTotal.setText(totalPaye.toString());
+            txtTotal.setText(totalPaye.toString());
         }
     }
 
@@ -335,12 +334,11 @@ public class SalleInfo extends javax.swing.JDialog {
         }
 
     }
-    
-        public void totalPaye() {
+
+    public void totalPaye() {
         try {
             String query = "SELECT Sum(total_paye) as total  FROM salesinfo  "
-
-//            String query = "SELECT Sum((sellprice*quantity)-recu) as total  FROM salledata  "
+                    //            String query = "SELECT Sum((sellprice*quantity)-recu) as total  FROM salledata  "
                     + "WHERE  customercode='" + codeText.getText() + "'  and  isLoan='false'";
 
             resultSet = statement.executeQuery(query);

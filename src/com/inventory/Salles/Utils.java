@@ -124,7 +124,8 @@ public class Utils {
         return dateFormat.format(dates);
 
     }
-
+//this function calcule the sum of the item that bought by the client 
+    
     public static void totalValue(DefaultTableModel listSalles, JCheckBox TVA, JTextField txtTotal, JTable salesTable) {
 
         Double totalPaye = 0.0;

@@ -37,7 +37,7 @@ public class UserTable extends DefaultTableModel {
 
     public String[] getColums() {
         String[] COLUMNS = {
-            "Code_Vendeur", "Nom_Complet", "Lieu", "Telephone","username","mot de pass","type" ,"peuxVender"       };
+            "Code_Vendeur", "Nom_Complet", "Lieu", "Telephone","username","type" ,"peuxVender"       };
         return COLUMNS;
 
     }

@@ -1156,104 +1156,7 @@ public final class SallePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     private void btnSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalleActionPerformed
-        String operation = null;
-        Double total = Double.valueOf(txtTotal.getText());
-        Double recu = Double.valueOf(txtRecu.getText());
-        operation = operationType.getSelectedItem().toString();
-        if (null == operation) {
-        } else
-            switch (operation) {
-                case "Cash": {
-
-                    if (!txtRecu.getText().equals("") && !txtRecu.getText().equals("0") && recu >= total) {
-                        moneyToCaisse = moneyToCaisse + Double.valueOf(txtTotal.getText());
-                        try {
-                            selleOrloanProduct(false);
-                        } catch (URISyntaxException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(this,
-                                "il vaut rmeplie le montent recu "
-                                + "pour et le montent doit \n"
-                                + "etre superaire ou egal"
-                                + " le montent total terminer "
-                                + " l'operation.");
-                        txtRecu.requestFocus();
-
-                        txtRecu.setSelectionStart(0);
-                        txtRecu.setSelectionEnd(txtRecu.getText().length());
-                    }
-
-                    break;
-                }
-                // TODO add your handling code here:
-                case "A Terme": {
-                    if ((txtRecu.getText().equals("0") || recu < total) && canLoan()) {
-
-                        try {
-                            selleOrloanProduct(true);
-                        } catch (URISyntaxException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(this,
-                                " le montent doit \n"
-                                + "etre inferieur a \n"
-                                + " le montent total ou egal\n zero ou le client inconue ne peux pas emprete les produit pour terminer "
-                                + " l'operation A terme.");
-                        txtRecu.requestFocus();
-
-                        txtRecu.setSelectionStart(0);
-                        txtRecu.setSelectionEnd(txtRecu.getText().length());
-                    }
-
-                    break;
-                }
-                case "Devis": {
-                    if (total > 0) {
-                        DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
-
-                        try {
-                            if (TVA.isSelected()) {
-                                devisProduct(true, true);
-                            } else {
-                                devisProduct(true, false);
-                            }
-
-                        } catch (URISyntaxException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        listSalles.setRowCount(0);
-                        clear3();
-                    } else {
-                        JOptionPane.showMessageDialog(this,
-                                "il vaut rmeplie le montent recu "
-                                + "pour et le montent doit \n"
-                                + "etre superaire ou egal"
-                                + " le montent total terminer "
-                                + " l'operation.");
-                        txtRecu.requestFocus();
-
-                        txtRecu.setSelectionStart(0);
-                        txtRecu.setSelectionEnd(txtRecu.getText().length());
-                    }
-
-                    break;
-                }
-                default:
-                    JOptionPane.showMessageDialog(this,
-                            "il vaut choisir le type de vente ou le type d'operation vende en cash ou mise en terme pour terminer l'operation.");
-                    break;
-            }
+        doTheSale();
     }//GEN-LAST:event_btnSalleActionPerformed
 
     private void btnCaisseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaisseActionPerformed
@@ -1524,6 +1427,219 @@ public final class SallePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProductMouseEntered
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SallePage("deidine").setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox TVA;
+    private javax.swing.JButton addCustButton;
+    private javax.swing.JButton btnCaisse;
+    private javax.swing.JButton btnDeleteItem;
+    private javax.swing.JButton btnEntrer;
+    private javax.swing.JButton btnModifier;
+    private javax.swing.JButton btnSalle;
+    private javax.swing.JButton btnSalle2;
+    private javax.swing.JButton btndeleteAll;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JCheckBox clientKnow;
+    private javax.swing.JCheckBox clientUnKnow;
+    private javax.swing.JTextField custCodeText;
+    private javax.swing.JMenuItem infoAplikasi;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelListSalle;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBarInfoPengembang;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuLogout;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPaneKasirBarang;
+    private javax.swing.JScrollPane jScrollPaneKasirBarang1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTableClient;
+    private javax.swing.JTable jTableProduct;
+    private javax.swing.JComboBox<String> operationType;
+    private javax.swing.JTextField priceText;
+    private javax.swing.JTextField prodCodeText;
+    private javax.swing.JTextField prodNameText;
+    private javax.swing.JTextField quantityText;
+    private javax.swing.JTable salesTable;
+    private javax.swing.JPanel sellPanel;
+    private javax.swing.JTextField txtClient;
+    private javax.swing.JTextField txtProduct;
+    private javax.swing.JTextField txtRecu;
+    private javax.swing.JTextField txtRendre;
+    private javax.swing.JTextField txtTotal;
+    private javax.swing.JLabel vendeur;
+    // End of variables declaration//GEN-END:variables
+//this function is for if the user click on terminer and do the sale base on the his choice
+    void doTheSale() {
+        String operation = null;
+        Double total = Double.valueOf(txtTotal.getText());
+        Double recu = Double.valueOf(txtRecu.getText());
+        operation = operationType.getSelectedItem().toString();
+        if (null == operation) {
+        } else {
+            switch (operation) {
+                case "Cash": {
+
+                    if (!txtRecu.getText().equals("") && !txtRecu.getText().equals("0") && recu >= total) {
+                        moneyToCaisse = moneyToCaisse + Double.valueOf(txtTotal.getText());
+                        try {
+                            selleOrloanProduct(false);
+                        } catch (URISyntaxException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "il vaut rmeplie le montent recu "
+                                + "pour et le montent doit \n"
+                                + "etre superaire ou egal"
+                                + " le montent total terminer "
+                                + " l'operation.");
+                        txtRecu.requestFocus();
+
+                        txtRecu.setSelectionStart(0);
+                        txtRecu.setSelectionEnd(txtRecu.getText().length());
+                    }
+
+                    break;
+                }
+                // TODO add your handling code here:
+                case "A Terme": {
+                    if ((txtRecu.getText().equals("0") || recu < total) && canLoan()) {
+
+                        try {
+                            selleOrloanProduct(true);
+                        } catch (URISyntaxException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                " le montent doit \n"
+                                + "etre inferieur a \n"
+                                + " le montent total ou egal\n zero ou le client inconue ne peux pas emprete les produit pour terminer "
+                                + " l'operation A terme.");
+                        txtRecu.requestFocus();
+
+                        txtRecu.setSelectionStart(0);
+                        txtRecu.setSelectionEnd(txtRecu.getText().length());
+                    }
+
+                    break;
+                }
+                case "Devis": {
+                    if (total > 0) {
+                        DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
+
+                        try {
+                            if (TVA.isSelected()) {
+                                devisProduct(true, true);
+                            } else {
+                                devisProduct(true, false);
+                            }
+
+                        } catch (URISyntaxException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SallePage.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        listSalles.setRowCount(0);
+                        clear3();
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "il vaut rmeplie le montent recu "
+                                + "pour et le montent doit \n"
+                                + "etre superaire ou egal"
+                                + " le montent total terminer "
+                                + " l'operation.");
+                        txtRecu.requestFocus();
+
+                        txtRecu.setSelectionStart(0);
+                        txtRecu.setSelectionEnd(txtRecu.getText().length());
+                    }
+
+                    break;
+                }
+                default:
+                    JOptionPane.showMessageDialog(this,
+                            "il vaut choisir le type de vente ou le type d'operation vende en cash ou mise en terme pour terminer l'operation.");
+                    break;
+            }
+        }
+    }
+//this function for loading and searching the client form database and have parm the serched for   
+
     public void loadSearchDataClient(String text) {
 
         jTableClient.setModel(cltb.generateTable(text));
@@ -1769,7 +1885,7 @@ public final class SallePage extends javax.swing.JFrame {
 
     public void clearEmpty() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
-         String codeProd1;
+        String codeProd1;
         String codeProd2 = null;
         if (listSalles.getRowCount() > 0) {
 
@@ -1870,116 +1986,6 @@ public final class SallePage extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SallePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SallePage("deidine").setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox TVA;
-    private javax.swing.JButton addCustButton;
-    private javax.swing.JButton btnCaisse;
-    private javax.swing.JButton btnDeleteItem;
-    private javax.swing.JButton btnEntrer;
-    private javax.swing.JButton btnModifier;
-    private javax.swing.JButton btnSalle;
-    private javax.swing.JButton btnSalle2;
-    private javax.swing.JButton btndeleteAll;
-    private javax.swing.JButton clearButton;
-    private javax.swing.JCheckBox clientKnow;
-    private javax.swing.JCheckBox clientUnKnow;
-    private javax.swing.JTextField custCodeText;
-    private javax.swing.JMenuItem infoAplikasi;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelListSalle;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBarInfoPengembang;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuLogout;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPaneKasirBarang;
-    private javax.swing.JScrollPane jScrollPaneKasirBarang1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTableClient;
-    private javax.swing.JTable jTableProduct;
-    private javax.swing.JComboBox<String> operationType;
-    private javax.swing.JTextField priceText;
-    private javax.swing.JTextField prodCodeText;
-    private javax.swing.JTextField prodNameText;
-    private javax.swing.JTextField quantityText;
-    private javax.swing.JTable salesTable;
-    private javax.swing.JPanel sellPanel;
-    private javax.swing.JTextField txtClient;
-    private javax.swing.JTextField txtProduct;
-    private javax.swing.JTextField txtRecu;
-    private javax.swing.JTextField txtRendre;
-    private javax.swing.JTextField txtTotal;
-    private javax.swing.JLabel vendeur;
-    // End of variables declaration//GEN-END:variables
-
 //   cette fonction pour l'operation vender ou loue il prent input si loue est true ou  false
 //    
     void putMoneyInCaisse() {
@@ -1990,6 +1996,8 @@ public final class SallePage extends javax.swing.JFrame {
 
         }
     }
+//this function is for sell the prodocut if the parms have true that me it loan and stored in the 
+//    database 
 
     public void selleOrloanProduct(boolean isLoan) throws URISyntaxException, InterruptedException {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
@@ -2034,6 +2042,8 @@ public final class SallePage extends javax.swing.JFrame {
         isUNKnowedCLient();
 
     }
+//this function is for saving the devis into database it take two args one for if it is lon choice and if 
+//have tva and do appropraite job 
 
     public void devisProduct(boolean isLoan, boolean isTva) throws URISyntaxException, InterruptedException {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
@@ -2077,6 +2087,7 @@ public final class SallePage extends javax.swing.JFrame {
         isUNKnowedCLient();
 
     }
+//this function is for saving the file to pdf 
 
     public void saveFile() throws URISyntaxException, InterruptedException {
 
@@ -2089,11 +2100,11 @@ public final class SallePage extends javax.swing.JFrame {
 
                 if (TVA.isSelected()) {
                     PDFSalleTVA.inBaoCao(new File("deidine.pdf"), getCureentTime(), operationType.getSelectedItem().toString(), (DefaultTableModel) salesTable.getModel(),
-                            getCustomerInfo(custCodeText.getText()), txtRecu.getText(), txtRendre.getText(), txtTotal.getText(), true,null);
+                            getCustomerInfo(custCodeText.getText()), txtRecu.getText(), txtRendre.getText(), txtTotal.getText(), true, null);
 
                 } else {
                     PDFSalleTVA.inBaoCao(new File("deidine.pdf"), getCureentTime(), operationType.getSelectedItem().toString(), (DefaultTableModel) salesTable.getModel(),
-                            getCustomerInfo(custCodeText.getText()), txtRecu.getText(), txtRendre.getText(), txtTotal.getText(), false,null);
+                            getCustomerInfo(custCodeText.getText()), txtRecu.getText(), txtRendre.getText(), txtTotal.getText(), false, null);
 
                 }
             }
@@ -2104,6 +2115,8 @@ public final class SallePage extends javax.swing.JFrame {
         } catch (IOException ex) {
         }
     }
+//this function used for printing the name of client that is in the table 
+//it itreate until find the specific name and retun his phone and name
 
     public String getCustomerInfo(String code) {
         if (code.equals("inconue")) {
@@ -2120,6 +2133,7 @@ public final class SallePage extends javax.swing.JFrame {
         }
         return null;
     }
+//this function verivy if the client have the inconnue name it return boolean and take name as the parematre
 
     public boolean isCustomerInconu(String code) {
         if (code.equals("inconue")) {

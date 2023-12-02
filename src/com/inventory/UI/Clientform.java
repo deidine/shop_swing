@@ -18,6 +18,7 @@ import com.inventory.DTO.CustomerDTO;
  * @author deidine
  */
 public class Clientform extends javax.swing.JDialog {
+
     /**
      * Creates new form Clientform
      */
@@ -47,9 +48,8 @@ public class Clientform extends javax.swing.JDialog {
         setModal(true);
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    
+
     }
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,9 +239,9 @@ public class Clientform extends javax.swing.JDialog {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         if (codeText.getText().equals("") || nameText.getText().equals("")
-                || locationText.getText().equals("") || phoneText.getText().equals(""))
+                || locationText.getText().equals("") || phoneText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "il vaut remplis toute les champs pour terminer l'operation.");
-        else {
+        } else {
             CustomerDTO customerDTO = new CustomerDTO();
             customerDTO.setCustCode(codeText.getText());
             customerDTO.setFullName(nameText.getText());
@@ -259,9 +259,9 @@ public class Clientform extends javax.swing.JDialog {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
         if (codeText.getText().equals("") || nameText.getText().equals("")
-                || locationText.getText().equals("") || phoneText.getText().equals(""))
+                || locationText.getText().equals("") || phoneText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "il vaut remplis toute les champs pour terminer l'operation.");
-        else {
+        } else {
             CustomerDTO customerDTO = new CustomerDTO();
             customerDTO.setCustCode(codeText.getText());
             customerDTO.setFullName(nameText.getText());
