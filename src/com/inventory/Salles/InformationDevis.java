@@ -5,6 +5,7 @@
 package com.inventory.Salles;
 
 import com.inventory.DAO.CaisseDAO;
+import com.inventory.Salles.interfaces.InfoSalleInter;
 import com.inventory.tables.DevisTable;
 import com.inventory.tables.SalleTable;
 import com.inventory.tables.SalleTable2;
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author deidine
  */
-public class InformationDevis extends javax.swing.JPanel {
+public class InformationDevis extends javax.swing.JPanel implements InfoSalleInter{
     SalleTable2 sltbl2 = new SalleTable2();
 
     DevisTable sltbl = new DevisTable();
@@ -318,6 +319,13 @@ String username;
         }        // TODO add your handling code here:
     }//GEN-LAST:event_cancelSaleActionPerformed
 
+    public String getCureentTime() {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date dates = new Date();
+
+        return dateFormat.format(dates);
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntPay;
@@ -339,18 +347,18 @@ String username;
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JTable tabelInformation;
     // End of variables declaration//GEN-END:variables
-
-    private void loadSearchDataSale(String text) {
+@Override
+    public void loadSearchDataSale(String text) {
 
         tabelInformation.setModel(sltbl.generateSearchTable(text, "true"));
     }
-
-    private void loadSearchDataSaleByDate(String start, String end) {
+@Override
+    public void loadSearchDataSaleByDate(String start, String end) {
 
         tabelInformation.setModel(sltbl.generateSearchDateTable(start, end, "true"));
     }
-
-    private String stringToDaTe(Date s) {
+@Override
+    public String stringToDaTe(Date s) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

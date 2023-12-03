@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.inventory.Salles;
 
 import com.inventory.Database.ConnectionFactory;
@@ -26,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 //this class is for when the client want to pay his debit it just give the mony and will have two table and button 
 //frist table show all his taken and the other will have the new payement so after that you have to delete from database
-public class PayLoanTest extends javax.swing.JDialog {
+public final class PayLoanTest extends javax.swing.JDialog {
 
     Connection conn = null;
     PreparedStatement prepStatement = null;
@@ -36,6 +32,7 @@ public class PayLoanTest extends javax.swing.JDialog {
 
     /**
      * Creates new form PayLoanTest
+     * @param data
      */
     public PayLoanTest(Object[] data) {
         try {

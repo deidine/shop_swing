@@ -5,7 +5,7 @@
 package com.inventory.raport;
 
 import com.inventory.Salles.SallePage;
-import com.inventory.Salles.Utils;
+import com.inventory.Salles.Utils.Utils;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

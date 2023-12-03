@@ -183,7 +183,6 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuIExit1 = new javax.swing.JMenuItem();
         jMenuIExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         infoAplikasi = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1041,7 +1040,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu1.setText("Option");
 
-        jMenuRefresh.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuRefresh.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuRefresh.setText("Afficher Le nouveaux cahngement");
         jMenuRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1050,7 +1049,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuRefresh);
 
-        jMenuIExit1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuIExit1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuIExit1.setText("Page De Vente");
         jMenuIExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1059,7 +1058,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuIExit1);
 
-        jMenuIExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuIExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_END, 0));
         jMenuIExit.setText("Exit");
         jMenuIExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1072,17 +1071,8 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuItem1.setText("Info Pengembang");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
         infoAplikasi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        infoAplikasi.setText("Info Aplikasi");
+        infoAplikasi.setText("Information du l'Apllication");
         infoAplikasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 infoAplikasiActionPerformed(evt);
@@ -1345,12 +1335,8 @@ public class Dashboard extends javax.swing.JFrame {
         refrech();        // TODO add your handling code here:
     }//GEN-LAST:event_addProduitActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void infoAplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAplikasiActionPerformed
-        // TODO add your handling code here:
+new AboutForm().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_infoAplikasiActionPerformed
 
     private void jMenuIExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIExitActionPerformed
@@ -1786,7 +1772,6 @@ dispose();
     private javax.swing.JMenuBar jMenuBarInfoPengembang;
     private javax.swing.JMenuItem jMenuIExit;
     private javax.swing.JMenuItem jMenuIExit1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuRefresh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

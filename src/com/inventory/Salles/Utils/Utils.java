@@ -1,4 +1,4 @@
-package com.inventory.Salles;
+package com.inventory.Salles.Utils;
 
 import java.awt.AWTException;
 import java.awt.HeadlessException;
@@ -123,50 +123,6 @@ public class Utils {
 
         return dateFormat.format(dates);
 
-    }
-//this function calcule the sum of the item that bought by the client 
-    
-    public static void totalValue(DefaultTableModel listSalles, JCheckBox TVA, JTextField txtTotal, JTable salesTable) {
-
-        Double totalPaye = 0.0;
-        for (int i = 0; i < listSalles.getRowCount(); i++) {
-            Double sellPrice = Double.valueOf(listSalles.getValueAt(i, 2).toString());
-//            Double totalRevenue = sellPrice;
-
-            Double totalRevenue = sellPrice * Double.valueOf(listSalles.getValueAt(i, 3).toString());
-            totalPaye = totalPaye + totalRevenue;
-
-        }
-        if (TVA.isSelected()) {
-            totalPaye = (totalPaye * 1.6);
-            txtTotal.setText(totalPaye.toString());
-        } else {
-            txtTotal.setText(totalPaye.toString());
-        }
-
-//        si le table est vide metre le champ 0
-        if (salesTable.getRowCount() == 0) {
-            txtTotal.setText("0");
-        }
-    }
-
-    public static void totalNoTvaValue(DefaultTableModel listSalles, JTextField txtTotal, JTable salesTable) {
-
-        Double totalPaye = 0.0;
-        for (int i = 0; i < listSalles.getRowCount(); i++) {
-            Double sellPrice = Double.valueOf(listSalles.getValueAt(i, 2).toString());
-//            Double totalRevenue = sellPrice;
-
-            Double totalRevenue = sellPrice * Integer.valueOf(listSalles.getValueAt(i, 3).toString());
-            totalPaye = totalPaye + totalRevenue;
-
-        }
-        txtTotal.setText(totalPaye.toString());
-
-//        si le table est vide metre le champ 0
-        if (salesTable.getRowCount() == 0) {
-            txtTotal.setText("0");
-        }
     }
 
     public static void printFromWindowsPrinter() throws URISyntaxException, IOException, InterruptedException {

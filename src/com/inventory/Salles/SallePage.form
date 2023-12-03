@@ -6,47 +6,40 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Les Options"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuLogout">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+L"/>
+                  <KeyStroke key="END"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Log Out"/>
+                <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuLogoutActionPerformed"/>
               </Events>
             </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+I"/>
+                  <KeyStroke key="F2"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Info Pengembang"/>
+                <Property name="text" type="java.lang.String" value="Entrer Dans Liste"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="infoAplikasi">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+P"/>
+                  <KeyStroke key="F1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Info Aplikasi"/>
+                <Property name="text" type="java.lang.String" value="Terminer La Vente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="infoAplikasiActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -1066,7 +1059,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1390,7 +1383,7 @@
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="prodNameText" min="-2" pref="13" max="-2" attributes="0"/>
-                                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1416,7 +1409,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="ENTRER LA QUANTITE DU PRODUIT VENDER PUI CLIQUE ENTRER DANS "/>
+                                <Property name="text" type="java.lang.String" value="Click F2 pour Entrer Dans Liste   |    Click F1 Pour Termine L&apos;Operation"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="prodNameText">

@@ -4,10 +4,12 @@
  */
 package com.inventory.Salles;
 
+import com.inventory.Salles.Utils.Utils;
 import com.inventory.Combo.ComboItem;
 import com.inventory.DAO.ProductDAO;
 import com.inventory.DTO.ProductDTO;
 import com.inventory.Database.ConnectionFactory;
+import com.inventory.Salles.Utils.CalculTotal;
 import com.inventory.raport.PDFSalleNoTVA;
 import com.inventory.raport.PDFSalleTVA;
 import com.itextpdf.text.DocumentException;
@@ -51,7 +53,7 @@ public class PayDevis extends javax.swing.JDialog {
 
     Object[] items
             = {
-                new ComboItem("Choisir type operation"),
+                
                 new ComboItem("Cash"),
                 new ComboItem("A Terme"),};
 
@@ -627,7 +629,7 @@ public class PayDevis extends javax.swing.JDialog {
 
     void totalValue() {
 
-        Utils.totalValue((DefaultTableModel) allDevisTable.getModel(), TVA, txtTotal, allDevisTable);
+        CalculTotal.totalValue((DefaultTableModel) allDevisTable.getModel(), TVA, txtTotal, allDevisTable);
 
     }
 

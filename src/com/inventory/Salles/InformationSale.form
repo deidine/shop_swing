@@ -172,14 +172,10 @@
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="startDate" alignment="0" pref="37" max="32767" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="endDate" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTextSearch" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="search" alignment="0" pref="34" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="searchDate" alignment="0" pref="37" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="endDate" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextSearch" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="search" alignment="0" pref="34" max="32767" attributes="0"/>
+                                      <Component id="searchDate" alignment="0" pref="37" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

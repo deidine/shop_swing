@@ -5,6 +5,7 @@
 package com.inventory.Salles;
 
 import com.inventory.DAO.CaisseDAO;
+import com.inventory.Salles.interfaces.InfoSalleInter;
 import com.inventory.raport.PDFTable;
 import com.inventory.tables.SalleTable2;
 import com.itextpdf.text.DocumentException;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author deidine
  */
-public class InformationSale extends javax.swing.JPanel {
+public class InformationSale extends javax.swing.JPanel  implements InfoSalleInter{
 
     SalleTable2 sltbl = new SalleTable2();
     Date dates = new Date();
@@ -363,7 +364,8 @@ public class InformationSale extends javax.swing.JPanel {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_bntPay2ActionPerformed
-    private String getCureentTime() {
+    
+    public String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
@@ -391,17 +393,20 @@ public class InformationSale extends javax.swing.JPanel {
     private javax.swing.JTable tabelInformation;
     // End of variables declaration//GEN-END:variables
 
-    private void loadSearchDataSale(String text) {
+@Override    
+    public void loadSearchDataSale(String text) {
 
         tabelInformation.setModel(sltbl.generateSearchTable(text));
     }
 
-    private void loadSearchDataSaleByDate(String start, String end) {
+ @Override   
+    public void loadSearchDataSaleByDate(String start, String end) {
 
         tabelInformation.setModel(sltbl.generateSearchDateTable(start, end));
     }
-
-    private String stringToDaTe(Date s) {
+@Override
+    
+    public String stringToDaTe(Date s) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

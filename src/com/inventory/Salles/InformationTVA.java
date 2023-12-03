@@ -4,6 +4,7 @@
  */
 package com.inventory.Salles;
 
+import com.inventory.Salles.interfaces.InfoSalleInter;
 import com.inventory.raport.PDFTable;
 import com.inventory.tables.TableTVA;
 import com.itextpdf.text.DocumentException;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author deidine
  */
-public class InformationTVA extends javax.swing.JPanel {
+public class InformationTVA extends javax.swing.JPanel implements InfoSalleInter {
 
     TableTVA sltbl = new TableTVA();
     Date dates = new Date();
@@ -316,9 +317,9 @@ public class InformationTVA extends javax.swing.JPanel {
         name.add("recu");
         name.add("retourner");
         name.add("vend_par");
-String description="tva table";
+        String description = "tva table";
         try {
-            PDFTable.inBaoCao(description,new File("deidine.pdf"), width, getCureentTime(), name, (DefaultTableModel) tabelInformation.getModel());
+            PDFTable.inBaoCao(description, new File("deidine.pdf"), width, getCureentTime(), name, (DefaultTableModel) tabelInformation.getModel());
             // TODO add your handling code here:
         } catch (DocumentException ex) {
             Logger.getLogger(InformationTVA.class.getName()).log(Level.SEVERE, null, ex);
@@ -334,7 +335,7 @@ String description="tva table";
     }//GEN-LAST:event_bntPayActionPerformed
 
     private void bntPay2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPay2ActionPerformed
-        if (tabelInformation.getSelectedRow() < 0  ) {
+        if (tabelInformation.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "SLV slectionner un line dans le table pour le suprimer.");
         } else {
             int row = tabelInformation.getSelectedRow();
@@ -345,18 +346,19 @@ String description="tva table";
 
                 data[i] = tabelInformation.getValueAt(row, i);
             }
-            if (tabelInformation.getValueAt(row, 0) != null){
+            if (tabelInformation.getValueAt(row, 0) != null) {
                 new SalleInfo(data);
             }
 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_bntPay2ActionPerformed
-    private String getCureentTime() {
-        
+    
+    public String getCureentTime() {
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
-        
+
         return dateFormat.format(dates);
 
     }
@@ -382,18 +384,20 @@ String description="tva table";
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JTable tabelInformation;
     // End of variables declaration//GEN-END:variables
-
-    private void loadSearchDataSale(String text) {
+@Override
+    public void loadSearchDataSale(String text) {
 
         tabelInformation.setModel(sltbl.generateSearchTable(text, "true"));
     }
 
-    private void loadSearchDataSaleByDate(String start, String end) {
+    @Override
+    public void loadSearchDataSaleByDate(String start, String end) {
 
         tabelInformation.setModel(sltbl.generateSearchDateTable(start, end, "true"));
     }
 
-    private String stringToDaTe(Date s) {
+    @Override
+    public String stringToDaTe(Date s) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

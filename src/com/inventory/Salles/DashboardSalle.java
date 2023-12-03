@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import com.inventory.Salles.DataDetail;
+import com.inventory.Salles.Utils.Utils;
 import java.awt.AWTException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

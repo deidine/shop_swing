@@ -1,5 +1,6 @@
 package com.inventory.Salles;
 
+import com.inventory.Salles.Utils.Utils;
 import com.inventory.Combo.ComboItem;
 import com.inventory.Combo.ComboListener;
 import java.text.DateFormat;
@@ -14,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import com.inventory.DAO.ProductDAO;
 import com.inventory.DAO.UserDAO;
 import com.inventory.DTO.ProductDTO;
+import com.inventory.Salles.Utils.CalculTotal;
+import com.inventory.Salles.interfaces.SalleInter;
 import com.inventory.UI.Clientform;
 import com.inventory.raport.PDFSalleNoTVA;
 import com.inventory.raport.PDFSalleTVA;
@@ -40,7 +43,7 @@ import java.util.Locale;
  *
  * @author deidine
  */
-public final class SallePage extends javax.swing.JFrame {
+public final class SallePage extends javax.swing.JFrame implements SalleInter {
 
     String username;
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -61,8 +64,7 @@ public final class SallePage extends javax.swing.JFrame {
     public SallePage(String username) {
 
         initComponents();
-
-        this.username = username;
+    this.username = username;
         loadSearchDataProduct("");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         vendeur.setText("Vendeur " + this.username);
@@ -160,9 +162,8 @@ public final class SallePage extends javax.swing.JFrame {
         jMenuBarInfoPengembang = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuLogout = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        infoAplikasi = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -904,7 +905,7 @@ public final class SallePage extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("ENTRER LA QUANTITE DU PRODUIT VENDER PUI CLIQUE ENTRER DANS ");
+        jLabel12.setText("Click F2 pour Entrer Dans Liste   |    Click F1 Pour Termine L'Operation");
 
         prodNameText.setEditable(false);
         prodNameText.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
@@ -923,7 +924,7 @@ public final class SallePage extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(prodNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -945,7 +946,7 @@ public final class SallePage extends javax.swing.JFrame {
                     .addGroup(sellPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                        .addGap(0, 56, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         sellPanelLayout.setVerticalGroup(
@@ -1024,10 +1025,10 @@ public final class SallePage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel15);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Les Options");
 
-        jMenuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuLogout.setText("Log Out");
+        jMenuLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_END, 0));
+        jMenuLogout.setText("Exit");
         jMenuLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuLogoutActionPerformed(evt);
@@ -1035,29 +1036,25 @@ public final class SallePage extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuLogout);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem2.setText("Entrer Dans Liste");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem3.setText("Terminer La Vente");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
         jMenuBarInfoPengembang.add(jMenu1);
-
-        jMenu2.setText("Edit");
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuItem1.setText("Info Pengembang");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
-        infoAplikasi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        infoAplikasi.setText("Info Aplikasi");
-        infoAplikasi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoAplikasiActionPerformed(evt);
-            }
-        });
-        jMenu2.add(infoAplikasi);
-
-        jMenuBarInfoPengembang.add(jMenu2);
 
         setJMenuBar(jMenuBarInfoPengembang);
 
@@ -1281,16 +1278,19 @@ public final class SallePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLogoutActionPerformed
-        // TODO add your handling code here:
+
+        int a = JOptionPane.showConfirmDialog(null, "tu veux fermer le system?", "Select", JOptionPane.YES_NO_OPTION);
+        JOptionPane.setRootFrame(null);
+        if (a == JOptionPane.YES_OPTION) {
+            if (moneyToCaisse > 0.0) {
+                putMoneyInCaisse();
+                moneyToCaisse = 0.0;
+            }
+            dispose();
+
+            System.exit(0);
+        }
     }//GEN-LAST:event_jMenuLogoutActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void infoAplikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAplikasiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_infoAplikasiActionPerformed
 
     private void quantityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextActionPerformed
         // TODO add your handling code here:
@@ -1392,40 +1392,40 @@ public final class SallePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrerKeyPressed
 
     private void quantityTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextKeyPressed
-        try {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                ActionEvent et = null;
-                if (custCodeText.getText().equals("") || prodCodeText.getText().equals("")
-                        || jDateChooser1.getDate() == null || quantityText.getText().equals("")
-                        || priceText.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "il vaux remplis toute les champs.");
-                } else {
-                    if (Double.parseDouble(quantityText.getText()) <= 0) {
-
-                        JOptionPane.showMessageDialog(null, "il vaut entrer valide qantite ");
-
-                    } else if (valideQuentite) {
-                        reduceQuentite();
-                        duplicateProduct();
-                        duplicateClient();
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "le quentite dans le stock est insifisent"
-                                + "\n le stock du "
-                                + currentStock);
-                    }
-
-                }
-
-            }
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }        // TODO add your handling code here:        // TODO add your handling code here:
+// TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_quantityTextKeyPressed
 
     private void jTableProductMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProductMouseEntered
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (custCodeText.getText().equals("") || prodCodeText.getText().equals("")
+                || jDateChooser1.getDate() == null || quantityText.getText().equals("")
+                || priceText.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "il vaux remplis toute les champs.");
+        } else {
+            if (Double.parseDouble(quantityText.getText()) <= 0) {
+
+                JOptionPane.showMessageDialog(null, "il vaut entrer valide qantite ");
+
+            } else if (valideQuentite) {
+                reduceQuentite();
+                duplicateProduct();
+                duplicateClient();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "le quentite dans le stock est insifisent"
+                        + "\n le stock du "
+                        + currentStock);
+            }
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        doTheSale();        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1476,7 +1476,6 @@ public final class SallePage extends javax.swing.JFrame {
     private javax.swing.JCheckBox clientKnow;
     private javax.swing.JCheckBox clientUnKnow;
     private javax.swing.JTextField custCodeText;
-    private javax.swing.JMenuItem infoAplikasi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -1495,9 +1494,9 @@ public final class SallePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelListSalle;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBarInfoPengembang;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuLogout;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1537,7 +1536,9 @@ public final class SallePage extends javax.swing.JFrame {
     private javax.swing.JLabel vendeur;
     // End of variables declaration//GEN-END:variables
 //this function is for if the user click on terminer and do the sale base on the his choice
-    void doTheSale() {
+
+    @Override
+    public void doTheSale() {
         String operation = null;
         Double total = Double.valueOf(txtTotal.getText());
         Double recu = Double.valueOf(txtRecu.getText());
@@ -1647,7 +1648,9 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //au moment click entre dans il vas entres le formulaire d'acht dans le table du vende
 
-    void pushDataSalle() {
+    @Override
+
+    public void pushDataSalle() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
         Object[] rows = {
             custCodeText.getText(), prodCodeText.getText(), priceText.getText(),
@@ -1661,11 +1664,11 @@ public final class SallePage extends javax.swing.JFrame {
 
 //cette fonction regarde si le client est conue dans le base de donnee si connue il vas bnefice  de vende en terme
 //est encore enregistrer son nom avec le produit acheter
+    @Override
     public void isKnowedCLient() {
         boolean canLoan = new UserDAO().canLoan(this.username.toLowerCase());
         Object[] items
-                = {
-                    new ComboItem("Choisir type operation"),
+                = { 
                     new ComboItem("Cash"), new ComboItem("Devis"),
                     new ComboItem("A Terme", canLoan),};
 
@@ -1698,10 +1701,12 @@ public final class SallePage extends javax.swing.JFrame {
 //cette fonction regarde si le client est inconue dans le base de donnee si inconnue il ne peut pas bnefice  de vende en terme
 //est encore enregistrer son nom inconue avec le produit acheter
 
+    @Override
+
     public void isUNKnowedCLient() {
         Object[] items2
                 = {
-                    new ComboItem("Choisir type operation"),
+                    
                     new ComboItem("Cash"), new ComboItem("Devis", false),
                     new ComboItem("A Terme", false),};
         if (clientUnKnow.isSelected()) {
@@ -1732,13 +1737,17 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //afficher les information du produit chercher
 
+    @Override
+
     public void loadSearchDataProduct(String text) {
 
         jTableProduct.setModel(prtbl.generateTable2(text));
 
     }
 
-    private String getCurrentDate() {
+    @Override
+
+    public String getCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("HH:MM:SS dd-MM-yyyy");
         Date dates = new Date();
         Calendar date = new GregorianCalendar();
@@ -1750,7 +1759,9 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //cette foncton prend comme input date puis trencever vers string
 
-    private String stringToDaTe(Date s) {
+    @Override
+
+    public String stringToDaTe(Date s) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -1758,7 +1769,9 @@ public final class SallePage extends javax.swing.JFrame {
         return formatter.format(s);
     }
 
-    private String getCureentTime() {
+    @Override
+
+    public String getCureentTime() {
 //        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
@@ -1766,6 +1779,8 @@ public final class SallePage extends javax.swing.JFrame {
         return dateFormat.format(dates);
 
     }
+
+    @Override
 
     public void clear() {
 
@@ -1779,6 +1794,8 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //pour initialise le champ du formulaire
 
+    @Override
+
     public void clear2() {
 
         prodCodeText.setText("");
@@ -1788,6 +1805,8 @@ public final class SallePage extends javax.swing.JFrame {
         quantityText.setText("1");
     }
 //pour initialise le champ du vente
+
+    @Override
 
     public void clear3() {
 
@@ -1800,12 +1819,16 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //cette fonction afficher ou calcler le motent qui doit payer en ajoutent tout les line du tableau du vende quentite*prix de vete
 
-    void totalValue() {
+    @Override
 
-        Utils.totalValue((DefaultTableModel) salesTable.getModel(), TVA, txtTotal, salesTable);
+    public void totalValue() {
+
+        CalculTotal.totalValue((DefaultTableModel) salesTable.getModel(), TVA, txtTotal, salesTable);
 
     }
 //cette fonction regarder si le table contient le nom inconue est retourner si exite ou non 
+
+    @Override
 
     public boolean canLoan() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
@@ -1823,7 +1846,9 @@ public final class SallePage extends javax.swing.JFrame {
 //    cette fonction regade si le client est repeter plusaire fois dans le tbale d vende est piur ne vender 
 //    produit pour deuxc client divernet
 
-    void duplicateClient() {
+    @Override
+
+    public void duplicateClient() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
 
         String codeClient1;
@@ -1852,7 +1877,9 @@ public final class SallePage extends javax.swing.JFrame {
 //cette fonction pour voire si le produit est trouver le table du vente puis augmenter le quentite est n'est
 //    pas ajouter autre line dans le table est encore pour ne pas instrer plusaire table dans le base de donner
 
-    void duplicateProduct() {
+    @Override
+
+    public void duplicateProduct() {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
         double quant1 = 0;
         double quant2 = Double.parseDouble(quantityText.getText());
@@ -1903,7 +1930,8 @@ public final class SallePage extends javax.swing.JFrame {
 
 //cette fonction reduire le quentite si le bouton entre dans cliquer pour ne pas entre des quentite qui
 //pas dans la base de donner 
-    void reduceQuentite() {
+    @Override
+    public void reduceQuentite() {
 
         DefaultTableModel listSalles = (DefaultTableModel) jTableProduct.getModel();
         String codeProd1;
@@ -1925,7 +1953,8 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //cette fonction verifier que le quentite dans le base de donne est bien sufisent pour le vender 
 
-    private void validQuentite() {
+    @Override
+    public void validQuentite() {
 
         DefaultTableModel listSalles = (DefaultTableModel) jTableProduct.getModel();
 
@@ -1963,15 +1992,14 @@ public final class SallePage extends javax.swing.JFrame {
 //cette fonction est pour modifier le table du produit si le boutton suprimer un line ou modifier 
 //est changer le quentite pour ne ne pas etre confronte les quentite
 
+    @Override
     public void setProductTable() {
         DefaultTableModel listSalles = (DefaultTableModel) jTableProduct.getModel();
         DefaultTableModel listSalles2 = (DefaultTableModel) salesTable.getModel();
 
         String codeProd1;
         double quent1;
-
         double quent2 = Double.parseDouble(listSalles2.getValueAt(salesTable.getSelectedRow(), 3).toString());
-
         String codeProd2 = listSalles2.getValueAt(salesTable.getSelectedRow(), 1).toString();
 
         for (int i = 0; i < listSalles.getRowCount(); i++) {
@@ -1986,9 +2014,9 @@ public final class SallePage extends javax.swing.JFrame {
         }
     }
 
-//   cette fonction pour l'operation vender ou loue il prent input si loue est true ou  false
-//    
-    void putMoneyInCaisse() {
+//   cette fonction pour l'operation vender ou loue il prent input si loue est true ou  false 
+    @Override
+    public void putMoneyInCaisse() {
         if (moneyToCaisse > 0.0) {
             new ProductDAO().putInCaisse(getCureentTime(), moneyToCaisse, this.username);
         } else {
@@ -1999,6 +2027,7 @@ public final class SallePage extends javax.swing.JFrame {
 //this function is for sell the prodocut if the parms have true that me it loan and stored in the 
 //    database 
 
+    @Override
     public void selleOrloanProduct(boolean isLoan) throws URISyntaxException, InterruptedException {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
         boolean tva = false;
@@ -2045,6 +2074,7 @@ public final class SallePage extends javax.swing.JFrame {
 //this function is for saving the devis into database it take two args one for if it is lon choice and if 
 //have tva and do appropraite job 
 
+    @Override
     public void devisProduct(boolean isLoan, boolean isTva) throws URISyntaxException, InterruptedException {
         DefaultTableModel listSalles = (DefaultTableModel) salesTable.getModel();
         if (listSalles.getRowCount() != 0) {
@@ -2089,6 +2119,7 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //this function is for saving the file to pdf 
 
+    @Override
     public void saveFile() throws URISyntaxException, InterruptedException {
 
         try {
@@ -2118,6 +2149,7 @@ public final class SallePage extends javax.swing.JFrame {
 //this function used for printing the name of client that is in the table 
 //it itreate until find the specific name and retun his phone and name
 
+    @Override
     public String getCustomerInfo(String code) {
         if (code.equals("inconue")) {
             return "inconue";
@@ -2135,6 +2167,7 @@ public final class SallePage extends javax.swing.JFrame {
     }
 //this function verivy if the client have the inconnue name it return boolean and take name as the parematre
 
+    @Override
     public boolean isCustomerInconu(String code) {
         if (code.equals("inconue")) {
             return true;
@@ -2150,5 +2183,7 @@ public final class SallePage extends javax.swing.JFrame {
         }
         return true;
     }
+
+     
 
 }

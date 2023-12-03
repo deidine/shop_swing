@@ -12,7 +12,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuRefresh">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+L"/>
+                  <KeyStroke key="F3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Afficher Le nouveaux cahngement"/>
               </Properties>
@@ -23,7 +23,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuIExit1">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+X"/>
+                  <KeyStroke key="F1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Page De Vente"/>
               </Properties>
@@ -34,7 +34,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuIExit">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+X"/>
+                  <KeyStroke key="END"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -49,23 +49,12 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+I"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Info Pengembang"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="infoAplikasi">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+P"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Info Aplikasi"/>
+                <Property name="text" type="java.lang.String" value="Information du l&apos;Apllication"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="infoAplikasiActionPerformed"/>

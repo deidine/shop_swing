@@ -21,6 +21,7 @@ import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.inventory.Salles.PayLoans;
+import com.inventory.Salles.interfaces.InfoSalleInter;
 import com.inventory.tables.SalleTable2;
 import java.net.URISyntaxException;
 import java.text.ParseException;
@@ -32,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author deidine
  */
-public class InformationLoan extends javax.swing.JPanel {
+public class InformationLoan extends javax.swing.JPanel  implements InfoSalleInter{
     SalleTable2 sltbl2 = new SalleTable2();
 
     SalleTable sltbl = new SalleTable();
@@ -325,7 +326,7 @@ public class InformationLoan extends javax.swing.JPanel {
         name.add("retrner");
         name.add("vend_par");
 
-        String description = "les impeyee table";
+        String description = "Table du Vente a Terme";
   
         try {
             PDFTable.inBaoCao(description, new File("deidine.pdf"), width, getCureentTime(), name, (DefaultTableModel) tabelInformation.getModel());
@@ -379,7 +380,9 @@ public class InformationLoan extends javax.swing.JPanel {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_bntPayActionPerformed
-   private String getCureentTime() {
+
+    @Override
+    public String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
@@ -406,18 +409,18 @@ public class InformationLoan extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JTable tabelInformation;
     // End of variables declaration//GEN-END:variables
-
-    private void loadSearchDataSale(String text) {
+@Override
+  public void loadSearchDataSale(String text) {
 
         tabelInformation.setModel(sltbl.generateSearchTable(text, "true"));
     }
-
-    private void loadSearchDataSaleByDate(String start, String end) {
+ @Override
+    public void loadSearchDataSaleByDate(String start, String end) {
 
         tabelInformation.setModel(sltbl.generateSearchDateTable(start, end, "true"));
     }
-
-    private String stringToDaTe(Date s) {
+@Override
+    public String stringToDaTe(Date s) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
