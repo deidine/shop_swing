@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 07:49 PM
+-- Generation Time: Dec 15, 2023 at 10:55 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -101,7 +101,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customercode`, `fullname`, `location`, `phone`) VALUES
- 
+('test', 'test', 'test', '000000'),
 ('inconue', 'inconue', 'inconue', '123456789');
 
 -- --------------------------------------------------------
@@ -142,9 +142,7 @@ CREATE TABLE `payloan` (
 --
 -- Dumping data for table `payloan`
 --
-
-
-
+ 
 -- --------------------------------------------------------
 
 --
@@ -163,6 +161,7 @@ CREATE TABLE `products` (
 --
 -- Dumping data for table `products`
 --
+
  
 -- --------------------------------------------------------
 
@@ -216,6 +215,7 @@ CREATE TABLE `salesdevis` (
 -- Dumping data for table `salesdevis`
 --
 
+ 
 -- --------------------------------------------------------
 
 --
@@ -238,6 +238,7 @@ CREATE TABLE `salesinfo` (
 -- Dumping data for table `salesinfo`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -254,6 +255,25 @@ CREATE TABLE `sale_detail` (
 
 --
 -- Dumping data for table `sale_detail`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_devis_detail`
+--
+
+CREATE TABLE `sale_devis_detail` (
+  `salesid` int(11) NOT NULL,
+  `productcode` varchar(45) NOT NULL,
+  `quantity` double NOT NULL,
+  `detaild` int(11) NOT NULL,
+  `sellprice` int(33) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sale_devis_detail`
 --
  
 -- --------------------------------------------------------
@@ -469,7 +489,8 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `caisse`
 --
 ALTER TABLE `caisse`
-  MODIFY `caisseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `caisseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
 --
 -- AUTO_INCREMENT for table `categorie`
 --
@@ -480,38 +501,45 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `payloan`
 --
 ALTER TABLE `payloan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;--
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `purchaseinfo`
 --
 ALTER TABLE `purchaseinfo`
-  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT for table `salesdevis`
 --
 ALTER TABLE `salesdevis`
-  MODIFY `salesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `salesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
 --
 -- AUTO_INCREMENT for table `salesinfo`
 --
 ALTER TABLE `salesinfo`
-  MODIFY `salesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `salesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=388;
 
 --
 -- AUTO_INCREMENT for table `sale_detail`
 --
 ALTER TABLE `sale_detail`
-  MODIFY `detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
 --
 -- AUTO_INCREMENT for table `sale_devis_detail`
 --
 ALTER TABLE `sale_devis_detail`
-  MODIFY `detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;--
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Constraints for dumped tables
 --
 
