@@ -1,4 +1,6 @@
 # localflexibles
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdeidine%2Fshop_swing.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdeidine%2Fshop_swing?ref=badge_shield)
+
 java -jar deidine.jar
 java version 17
 https://www.oracle.com/in/java/technologies/downloads/#jdk17-windows
@@ -11,3 +13,7 @@ and when it print shuld shot dialog apear in the util.java uncomment it
 + il vaux cacher le mot de pass pour ne pas etre public a les autre
 + 
 يالتك الين حد يدخل login pardefaut
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdeidine%2Fshop_swing.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdeidine%2Fshop_swing?ref=badge_large)
